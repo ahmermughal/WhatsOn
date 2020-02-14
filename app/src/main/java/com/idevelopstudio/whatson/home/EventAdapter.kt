@@ -10,9 +10,6 @@ import com.idevelopstudio.whatson.databinding.ListItemSmallEventBinding
 
 class EventAdapter : ListAdapter<Event, EventAdapter.ViewHolder>(EventDiffCallback()){
 
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }

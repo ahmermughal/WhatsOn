@@ -9,7 +9,7 @@
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/bookingsFragment"
-        android:name="com.idevelopstudio.whatson.BookingsFragment"
+        android:name="com.idevelopstudio.whatson.bookings.BookingsFragment"
         android:label="BookingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
