@@ -4,6 +4,12 @@
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="pastelRed">#FF6961</color>
+    <color name="pastelRedDark">#A8443F</color>
+
+    <color name="pastelBlue">#779ECB</color>
+    <color name="pastelBlueDark">#557192</color>
+
     <color name="backgroundColor">#121212</color>
     <color name="secondaryBackgroundColor">#272727</color>
 </resources>

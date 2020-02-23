@@ -89,6 +89,8 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/new_events_recycler_view" />
 
+
+
         </LinearLayout>
 
 

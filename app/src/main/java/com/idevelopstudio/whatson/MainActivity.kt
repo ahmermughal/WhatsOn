@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,21 +17,49 @@ import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar!!.hide()
+        setupBottomNav()
+    }
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    private fun setupBottomNav() {
+        binding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val navController = this.findNavController(R.id.nav_host_fragment)
 
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment,
-                                                            R.id.profileFragment,
-                                                            R.id.bookingsFragment).build()
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.homeFragment,
+            R.id.profileFragment,
+            R.id.bookingsFragment
+        ).build()
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        binding.bottomNav.setupWithNavController(navController)
 
         binding.bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when(destination.id){
+                R.id.loginFragment -> hideBottomNav()
+                else -> showBottomNav()
+            }
+        }
+
     }
+
+    private fun showBottomNav() {
+        binding.bottomNav.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        binding.bottomNav.visibility = View.GONE
+
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.appbar_menu, menu)
