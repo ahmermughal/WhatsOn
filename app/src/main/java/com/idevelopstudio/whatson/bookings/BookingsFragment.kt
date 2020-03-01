@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.idevelopstudio.whatson.Event
+import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentBookingsBinding
 import com.idevelopstudio.whatson.home.TopEventsAdapter
@@ -29,10 +29,34 @@ class BookingsFragment : Fragment() {
         binding.bookingsRecyclerView.adapter = adapter
 
         val list = ArrayList<Event>()
-        list.add(Event(1,"Event 1", R.drawable.hiking))
-        list.add(Event(2,"Event 2", R.drawable.nigtclub))
-        list.add(Event(3,"Event 3", R.drawable.hiking))
-        list.add(Event(4,"Event 4", R.drawable.nigtclub))
+        list.add(
+            Event(
+                1,
+                "Event 1",
+                R.drawable.hiking
+            )
+        )
+        list.add(
+            Event(
+                2,
+                "Event 2",
+                R.drawable.nigtclub
+            )
+        )
+        list.add(
+            Event(
+                3,
+                "Event 3",
+                R.drawable.hiking
+            )
+        )
+        list.add(
+            Event(
+                4,
+                "Event 4",
+                R.drawable.nigtclub
+            )
+        )
 
         adapter.submitList(list)
 

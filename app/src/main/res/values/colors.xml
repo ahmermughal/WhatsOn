@@ -6,6 +6,10 @@
 
     <color name="pastelRed">#FF6961</color>
     <color name="pastelRedDark">#A8443F</color>
+    <color name="pastelGreen">#77DD77</color>
+
+    <color name="secondaryTextColor">#999999</color>
+
 
     <color name="pastelBlue">#779ECB</color>
     <color name="pastelBlueDark">#557192</color>

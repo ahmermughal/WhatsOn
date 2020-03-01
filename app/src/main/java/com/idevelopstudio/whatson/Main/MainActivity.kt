@@ -1,8 +1,7 @@
-package com.idevelopstudio.whatson
+package com.idevelopstudio.whatson.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,7 +11,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ActivityMainBinding
+import com.idevelopstudio.whatson.databinding.BottomSheetLayoutBinding
+import com.idevelopstudio.whatson.R
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,16 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar!!.hide()
         setupBottomNav()
     }
 
     private fun setupBottomNav() {
         binding =
-            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+            DataBindingUtil.setContentView<ActivityMainBinding>(this,
+                R.layout.activity_main
+            )
         val navController = this.findNavController(R.id.nav_host_fragment)
 
         val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.loginFragment,
             R.id.homeFragment,
             R.id.profileFragment,
             R.id.bookingsFragment
@@ -43,8 +47,14 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
             when(destination.id){
-                R.id.loginFragment -> hideBottomNav()
-                else -> showBottomNav()
+                R.id.loginFragment -> {
+                    hideBottomNav()
+                    supportActionBar!!.hide()
+                }
+                else -> {
+                    showBottomNav()
+                    supportActionBar!!.show()
+                }
             }
         }
 
@@ -74,9 +84,59 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSearchBottomSheet(){
-        val bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
-        val bottomSheetView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, bottomSheetContainer)
-        bottomSheetDialog.setContentView(bottomSheetView)
+        val bottomSheetDialog = BottomSheetDialog(this,
+            R.style.BottomSheetDialogTheme
+        )
+        //val bottomSheetView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, bottomSheetContainer)
+
+        val binding: BottomSheetLayoutBinding = DataBindingUtil.inflate(layoutInflater,
+            R.layout.bottom_sheet_layout, bottomSheetContainer, false)
+
+        bottomSheetDialog.setContentView(binding.root)
+
+
+        val adapter = SearchAdapter()
+        val list = ArrayList<Event>()
+        list.add(
+            Event(
+                1,
+                "Event 1",
+                R.drawable.hiking
+            )
+        )
+        list.add(
+            Event(
+                2,
+                "Event 2",
+                R.drawable.nigtclub
+            )
+        )
+        list.add(
+            Event(
+                3,
+                "Event 3",
+                R.drawable.hiking
+            )
+        )
+        list.add(
+            Event(
+                4,
+                "Event 4",
+                R.drawable.nigtclub
+            )
+        )
+        list.add(
+            Event(
+                5,
+                "Event 5",
+                R.drawable.loginbg
+            )
+        )
+
+        adapter.submitList(list)
+
+        binding.searchRecyclerView.adapter = adapter
+
         bottomSheetDialog.show()
     }
 

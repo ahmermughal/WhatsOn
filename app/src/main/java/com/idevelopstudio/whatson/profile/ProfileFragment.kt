@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson
+package com.idevelopstudio.whatson.profile
 
 
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentProfileBinding
 
 /**
@@ -19,7 +20,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_profile, container, false)
 
         return binding.root
     }

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.idevelopstudio.whatson.R
-import com.idevelopstudio.whatson.Event
+import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.FragmentHomeBinding
 
 /**
@@ -31,9 +31,27 @@ class HomeFragment : Fragment() {
         binding.newEventsRecyclerView.adapter = smallEventAdapter
 
         val list = ArrayList<Event>()
-        list.add(Event(1,"Event 1", R.drawable.hiking))
-        list.add(Event(2,"Event 2", R.drawable.nigtclub))
-        list.add(Event(3,"Event 3", R.drawable.hiking))
+        list.add(
+            Event(
+                1,
+                "Event 1",
+                R.drawable.hiking
+            )
+        )
+        list.add(
+            Event(
+                2,
+                "Event 2",
+                R.drawable.nigtclub
+            )
+        )
+        list.add(
+            Event(
+                3,
+                "Event 3",
+                R.drawable.hiking
+            )
+        )
 
 
         adapter.submitList(list)

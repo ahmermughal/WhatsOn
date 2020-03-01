@@ -15,7 +15,7 @@
         android:label="BookingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.idevelopstudio.whatson.ProfileFragment"
+        android:name="com.idevelopstudio.whatson.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/loginFragment"

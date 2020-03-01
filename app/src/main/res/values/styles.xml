@@ -21,4 +21,15 @@
     <style name="ButtonRed" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_pastel_red</item>
     </style>
+
+
+    <style name="DarkTextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/secondaryBackgroundColor</item>
+    </style>
+
+    <style name="DarkSecondaryTextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+
 </resources>

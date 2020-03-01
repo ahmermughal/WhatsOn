@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson
+package com.idevelopstudio.whatson.models
 
 data class Event(
     val id : Int,
