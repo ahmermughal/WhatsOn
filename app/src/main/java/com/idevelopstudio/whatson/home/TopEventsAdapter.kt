@@ -15,7 +15,6 @@ class TopEventsAdapter : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEven
         return ViewHolder.from(parent)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)

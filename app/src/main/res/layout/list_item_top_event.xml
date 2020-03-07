@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:topEventImage="@{event}" />
+                app:eventImage="@{event}" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,6 +37,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
+                app:eventName="@{event}"
                 android:text="NightClub Party \n at Star Plaza" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

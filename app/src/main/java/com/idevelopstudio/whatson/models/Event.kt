@@ -3,12 +3,12 @@ package com.idevelopstudio.whatson.models
 import com.squareup.moshi.Json
 
 data class Event(
-    @Json(name = "_id") val id : Int,
+    @Json(name = "_id") val id : String,
     val title: String,
-    val image: Int
+//    val picInt: Int
 //    val description: String?,
 //    val address: String?,
 //    val type: String?,
-//    val images: List<String>?,
+   val image: List<String>
 //    val organizer: String?
     )

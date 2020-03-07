@@ -38,8 +38,8 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService{
     @GET("events")
-    fun getEvents():
-            Call<List<Event>>
+    suspend fun getEvents():
+            List<Event>
 }
 
 object Api{

@@ -94,48 +94,48 @@ class MainActivity : AppCompatActivity() {
 
         bottomSheetDialog.setContentView(binding.root)
 
-
-        val adapter = SearchAdapter()
-        val list = ArrayList<Event>()
-        list.add(
-            Event(
-                1,
-                "Event 1",
-                R.drawable.hiking
-            )
-        )
-        list.add(
-            Event(
-                2,
-                "Event 2",
-                R.drawable.nigtclub
-            )
-        )
-        list.add(
-            Event(
-                3,
-                "Event 3",
-                R.drawable.hiking
-            )
-        )
-        list.add(
-            Event(
-                4,
-                "Event 4",
-                R.drawable.nigtclub
-            )
-        )
-        list.add(
-            Event(
-                5,
-                "Event 5",
-                R.drawable.loginbg
-            )
-        )
-
-        adapter.submitList(list)
-
-        binding.searchRecyclerView.adapter = adapter
+//
+//        val adapter = SearchAdapter()
+//        val list = ArrayList<Event>()
+//        list.add(
+//            Event(
+//                "1",
+//                "Event 1",
+//                R.drawable.hiking
+//            )
+//        )
+//        list.add(
+//            Event(
+//                "2",
+//                "Event 2",
+//                R.drawable.nigtclub
+//            )
+//        )
+//        list.add(
+//            Event(
+//                "3",
+//                "Event 3",
+//                R.drawable.hiking
+//            )
+//        )
+//        list.add(
+//            Event(
+//                "4",
+//                "Event 4",
+//                R.drawable.nigtclub
+//            )
+//        )
+//        list.add(
+//            Event(
+//                "5",
+//                "Event 5",
+//                R.drawable.loginbg
+//            )
+//        )
+//
+//        adapter.submitList(list)
+//
+//        binding.searchRecyclerView.adapter = adapter
 
         bottomSheetDialog.show()
     }

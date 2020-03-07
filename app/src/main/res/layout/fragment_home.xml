@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.idevelopstudio.whatson.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:orientation="horizontal"
+                app:topEventListData="@{viewModel.response}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/top_events_recycler_view" />
 
@@ -86,11 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:orientation="horizontal"
+                app:eventListData="@{viewModel.response}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/new_events_recycler_view" />
-
-
-
         </LinearLayout>
 
 

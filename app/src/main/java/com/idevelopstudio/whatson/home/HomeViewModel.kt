@@ -1,38 +1,42 @@
 package com.idevelopstudio.whatson.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.network.Api
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<String>()
+    private val _response = MutableLiveData<List<Event>>()
 
-    val respose: LiveData<String>
-    get() = _response
+    val response: LiveData<List<Event>>
+        get() = _response
+
+    private val viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getEventsData()
     }
 
     private fun getEventsData() {
-    Api.retrofitService.getEvents().enqueue(object : Callback<List<Event>>{
-        override fun onFailure(call: Call<List<Event>>, t: Throwable) {
-            _response.value = "Failure: " + t.message
+        coroutineScope.launch {
+            try {
+                _response.value = Api.retrofitService.getEvents()
+            } catch (t: Throwable) {
+                Log.d("HomeViewModel", t.message!!)
+            }
         }
-
-        override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
-            _response.value = "Success ${response.body()?.size} Total Events"
-        }
-
-
-    })
     }
 
-
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }
