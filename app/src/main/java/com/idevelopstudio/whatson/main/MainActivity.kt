@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson.Main
+package com.idevelopstudio.whatson.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ActivityMainBinding
 import com.idevelopstudio.whatson.databinding.BottomSheetLayoutBinding
 import com.idevelopstudio.whatson.R

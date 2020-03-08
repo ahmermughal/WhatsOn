@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson.Main
+package com.idevelopstudio.whatson.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

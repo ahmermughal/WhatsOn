@@ -10,12 +10,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/main_layout"
         android:background="@drawable/loginbg"
         android:backgroundTint="#80000000"
         android:backgroundTintMode="src_atop"
         tools:context=".login.LoginFragment">
 
+        <ProgressBar
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65"
+            android:id="@+id/progress_circular"
+            android:visibility="invisible"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+
         <LinearLayout
+            android:id="@+id/button_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -29,14 +42,14 @@
             <android.widget.Button
                 android:id="@+id/google_login_button"
                 android:layout_width="280dp"
-                android:layout_height="60dp"
+                android:layout_height="65dp"
                 android:background="@drawable/button_pastel_red"
                 android:drawableStart="@drawable/google_g"
                 android:drawablePadding="-30dp"
-                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
                 android:text="Google Sign-In"
                 android:textColor="@android:color/white"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <View
@@ -46,14 +59,14 @@
             <android.widget.Button
                 android:id="@+id/facebook_login_button"
                 android:layout_width="280dp"
-                android:layout_height="60dp"
+                android:layout_height="65dp"
                 android:background="@drawable/button_pastel_blue"
                 android:drawableStart="@drawable/facebook_f"
                 android:drawablePadding="-30dp"
-                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
                 android:text="Facebook Sign-In"
                 android:textColor="@android:color/white"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <View
@@ -75,6 +88,8 @@
                 android:text="Privacy Policy"
                 />
         </LinearLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

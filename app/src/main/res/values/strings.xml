@@ -6,4 +6,8 @@
     <string name="search">Search</string>
     <string name="bookings">Bookings</string>
 
+    <string name="facebook_app_id">521005868552614</string>
+    <string name="fb_login_protocol_scheme">fb521005868552614</string>
+
+
 </resources>

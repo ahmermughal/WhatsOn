@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "494668414489-b3fmks0ltugbf3ak0tfcb0a9i6vu27no.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.idevelopstudio.whatson",
+            "certificate_hash": "e03bdd1068730b0768a814c5262652007a40bed8"
+          }
+        },
+        {
           "client_id": "494668414489-4eq5vhmihb236vk1m0hc6t0ruijsr6jr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
