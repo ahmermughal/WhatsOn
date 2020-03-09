@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.facebook.AccessToken
@@ -27,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentLoginBinding
+import com.idevelopstudio.whatson.home.HomeViewModel
 import timber.log.Timber
 
 /**
@@ -38,8 +41,11 @@ class LoginFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var callbackManager: CallbackManager
 
-
     private lateinit var binding : FragmentLoginBinding
+
+    private val viewModel: LoginViewModel by lazy {
+        ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
 
     companion object{
         private const val RC_SIGN_IN = 9001
@@ -67,6 +73,12 @@ class LoginFragment : Fragment() {
 
         googleSignInClient = GoogleSignIn.getClient(context!!, gso)
         callbackManager = CallbackManager.Factory.create()
+
+        viewModel.response.observe(viewLifecycleOwner, Observer {
+            Timber.d(it.message)
+            goToHomeFragment()
+            hideLoading()
+        })
 
         return binding.root
     }
@@ -139,8 +151,7 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Timber.d("signInWithCredential:success")
-                    goToHomeFragment()
-                    hideLoading()
+                    viewModel.createUser(auth.currentUser!!)
                 } else {
                     // If sign in fails, display a message to the user.
                     hideLoading()
@@ -160,8 +171,7 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Timber.d("signInWithCredential:success")
-                    goToHomeFragment()
-                    hideLoading()
+                    viewModel.createUser(auth.currentUser!!)
                 } else {
                     // If sign in fails, display a message to the user.
                     Timber.w(task.exception, "signInWithCredential:failure")
@@ -171,6 +181,7 @@ class LoginFragment : Fragment() {
                 }
             }
     }
+
 
     private fun goToHomeFragment(){
         findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())

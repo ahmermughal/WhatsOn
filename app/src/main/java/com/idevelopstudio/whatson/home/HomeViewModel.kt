@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class HomeViewModel : ViewModel() {
 
@@ -30,7 +31,7 @@ class HomeViewModel : ViewModel() {
             try {
                 _response.value = Api.retrofitService.getEvents()
             } catch (t: Throwable) {
-                Log.d("HomeViewModel", t.message!!)
+                Timber.d(t.message!!)
             }
         }
     }
