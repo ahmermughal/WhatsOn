@@ -7,20 +7,16 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.idevelopstudio.whatson.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:name="com.idevelopstudio.whatson.home.HomeFragment" />
     <fragment
         android:id="@+id/bookingsFragment"
-        android:name="com.idevelopstudio.whatson.bookings.BookingsFragment"
-        android:label="BookingsFragment" />
+        android:name="com.idevelopstudio.whatson.bookings.BookingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.idevelopstudio.whatson.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:name="com.idevelopstudio.whatson.profile.ProfileFragment" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.idevelopstudio.whatson.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:name="com.idevelopstudio.whatson.login.LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -33,6 +29,5 @@
     </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
-        android:name="com.idevelopstudio.whatson.eventDetails.EventDetailFragment"
-        android:label="EventDetailFragment" />
+        android:name="com.idevelopstudio.whatson.eventDetails.EventDetailFragment" />
 </navigation>

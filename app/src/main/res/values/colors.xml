@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="buttonColor">#FF1168</color>
+
     <color name="pastelRed">#FF6961</color>
     <color name="pastelRedDark">#A8443F</color>
     <color name="pastelGreen">#77DD77</color>
