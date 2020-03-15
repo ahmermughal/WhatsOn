@@ -2,18 +2,15 @@ package com.idevelopstudio.whatson.profile
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentProfileBinding
-import com.idevelopstudio.whatson.home.HomeViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -35,21 +32,38 @@ class ProfileFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        viewModel.user.value?.let {
 
+        }
+
+        binding.editProfile.setOnClickListener {
+            viewModel.user.value?.let {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(it.name,
+                    it.email,
+                    it.phone ?: "",
+                    it.age ?: 0,
+                    it.gender ?: "Male",
+                    it.uid))
+            }
+        }
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
-//            if(it.gender == ""){
-//                binding.genderImageView.visibility = View.INVISIBLE
-//                binding.genderTextView.visibility = View.INVISIBLE
-//            }else{
-//                binding.genderTextView.text = it.gender
-//            }
-
-            if(it.phone == "0"){
+            if (it.phone == "0") {
                 binding.phoneTextView.visibility = View.INVISIBLE
                 binding.phoneImageView.visibility = View.INVISIBLE
-            }else{
-                binding.genderTextView.text = it.phone
+            } else {
+                binding.phoneTextView.visibility = View.VISIBLE
+                binding.phoneImageView.visibility = View.VISIBLE
+                binding.phoneTextView.text = it.phone
+            }
+
+            if (it.gender == "0") {
+                binding.genderImageView.visibility = View.INVISIBLE
+                binding.genderTextView.visibility = View.INVISIBLE
+            } else {
+                binding.genderTextView.visibility = View.VISIBLE
+                binding.genderImageView.visibility = View.VISIBLE
+                binding.genderTextView.text = it.gender
             }
         })
 

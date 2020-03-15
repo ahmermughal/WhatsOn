@@ -13,7 +13,16 @@
         android:name="com.idevelopstudio.whatson.bookings.BookingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.idevelopstudio.whatson.profile.ProfileFragment" />
+        android:name="com.idevelopstudio.whatson.profile.ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.idevelopstudio.whatson.login.LoginFragment">
@@ -30,4 +39,32 @@
     <fragment
         android:id="@+id/eventDetailFragment"
         android:name="com.idevelopstudio.whatson.eventDetails.EventDetailFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.idevelopstudio.whatson.editProfile.EditProfileFragment" >
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

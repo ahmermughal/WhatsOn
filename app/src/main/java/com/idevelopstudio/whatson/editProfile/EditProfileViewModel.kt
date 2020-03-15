@@ -1,9 +1,8 @@
-package com.idevelopstudio.whatson.login
+package com.idevelopstudio.whatson.editProfile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseUser
 import com.idevelopstudio.whatson.models.DefaultReponse
 import com.idevelopstudio.whatson.network.Api
 import kotlinx.coroutines.CoroutineScope
@@ -12,7 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LoginViewModel  : ViewModel(){
+class EditProfileViewModel: ViewModel() {
 
     private val _response = MutableLiveData<DefaultReponse>()
     val response : LiveData<DefaultReponse>
@@ -21,18 +20,19 @@ class LoginViewModel  : ViewModel(){
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun createUser(user: FirebaseUser){
+
+    fun updateUser(uid: String, name: String, gender: String, phone: String, age: Int){
         coroutineScope.launch {
             try{
-                _response.value = Api.retrofitService.createUser(user.uid, user.displayName ?: "Event User", user.email!!)
+                _response.value = Api.retrofitService.updateUserData(uid, name, phone, age, gender)
             }catch (t: Throwable){
-                Timber.d("ERROR Create User: ${t.message}")
+                Timber.d("ERROR Update User: ${t.message}")
             }
         }
     }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
+
 }

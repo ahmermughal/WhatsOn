@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -14,12 +15,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.idevelopstudio.whatson.databinding.ActivityMainBinding
 import com.idevelopstudio.whatson.databinding.BottomSheetLayoutBinding
 import com.idevelopstudio.whatson.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-
+    private lateinit var  appBarConfiguration: AppBarConfiguration
+    private lateinit var  navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupBottomNav()
@@ -30,9 +33,9 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView<ActivityMainBinding>(this,
                 R.layout.activity_main
             )
-        val navController = this.findNavController(R.id.nav_host_fragment)
+        navController = this.findNavController(R.id.nav_host_fragment)
 
-        val appBarConfiguration = AppBarConfiguration.Builder(
+        appBarConfiguration = AppBarConfiguration.Builder(
             R.id.loginFragment,
             R.id.homeFragment,
             R.id.profileFragment,
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
 
     }
 
@@ -137,6 +141,10 @@ class MainActivity : AppCompatActivity() {
 //        binding.searchRecyclerView.adapter = adapter
 
         bottomSheetDialog.show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
 
