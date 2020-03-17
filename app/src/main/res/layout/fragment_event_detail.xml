@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="event"
+            type="com.idevelopstudio.whatson.models.Event" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".eventDetails.EventDetailFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".eventDetails.EventDetailFragment">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/name_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Clear Sea Beach"
+                android:text="@{event.title}"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +58,7 @@
                 app:layout_constraintTop_toBottomOf="@id/view_pager_card_view">
 
                 <LinearLayout
+                    android:padding="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -77,25 +80,8 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:text="Timings:"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/timing_details_text_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Mon-Sat, 11:00 to 16:00" />
+                        android:text="@{event.ticketDetails}"
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -107,16 +93,76 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/timing_details_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@{event.generalInfo}"
+                        tools:text="Mon-Sat, 11:00 to 16:00" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Description:"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:id="@+id/general_details_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+                        android:text="@{event.description}"
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/select_date_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Select The Date and Ticket:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/details_card_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/select_date_text_view"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                app:dateListData="@{event.days}"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/select_date_recycler_view"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/select_date_recycler_view"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                ticketListData="@{event.days.get(0).ticketTypes}"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/select_ticket_recycler_view"/>
+
 
             <TextView
                 android:id="@+id/select_ticket_title_text_view"
@@ -128,7 +174,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/details_card_view" />
+                app:layout_constraintTop_toBottomOf="@id/select_ticket_recycler_view" />
 
             <LinearLayout
                 android:id="@+id/layout_select_tickets"
@@ -141,13 +187,14 @@
                 app:layout_constraintTop_toBottomOf="@id/select_ticket_title_text_view">
 
                 <ImageButton
+                    android:id="@+id/ticket_minus_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="6dp"
                     android:background="@drawable/circle_button"
                     android:src="@drawable/ic_remove" />
 
-                <view
+                <View
                     android:layout_width="8dp"
                     android:layout_height="0dp" />
 
@@ -156,20 +203,22 @@
                     android:layout_height="52dp">
 
                     <TextView
+                        android:id="@+id/ticket_count_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="2"
+                        android:text="1"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <view
+                <View
                     android:layout_width="8dp"
                     android:layout_height="0dp" />
 
                 <ImageButton
+                    android:id="@+id/ticket_add_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="6dp"
@@ -177,32 +226,12 @@
                     android:src="@drawable/ic_add" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/select_date_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="Select The Date:"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_select_tickets" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/select_date_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="62dp"
-                android:layout_marginBottom="8dp"
-                android:id="@+id/select_date_recycler_view"/>
 
             <Button
                 android:text="Buy $10 Ticket"
                 android:textSize="22sp"
                 android:textColor="@android:color/white"
-                app:layout_constraintTop_toBottomOf="@id/select_date_recycler_view"
+                app:layout_constraintTop_toBottomOf="@id/layout_select_tickets"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/buy_ticket_button"

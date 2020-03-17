@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentHomeBinding
 
@@ -30,9 +33,12 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(layoutInflater)
 
         binding.lifecycleOwner = this
+        binding.nameTextView.text = FirebaseAuth.getInstance().currentUser?.displayName
 
         binding.viewModel = viewModel
-        binding.topEventsRecyclerView.adapter = TopEventsAdapter()
+        binding.topEventsRecyclerView.adapter = TopEventsAdapter(TopEventsAdapter.OnClickListener{
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEventDetailFragment(it))
+        })
         binding.newEventsRecyclerView.adapter = EventAdapter()
 
         return binding.root

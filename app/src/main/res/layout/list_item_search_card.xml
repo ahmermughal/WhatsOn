@@ -35,8 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:eventImage="@{event}"
-                    android:src="@drawable/hiking" />
+                    app:eventImage="@{event}" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView

@@ -7,7 +7,11 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.idevelopstudio.whatson.home.HomeFragment" />
+        android:name="com.idevelopstudio.whatson.home.HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookingsFragment"
         android:name="com.idevelopstudio.whatson.bookings.BookingsFragment" />
@@ -38,7 +42,11 @@
     </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
-        android:name="com.idevelopstudio.whatson.eventDetails.EventDetailFragment" />
+        android:name="com.idevelopstudio.whatson.eventDetails.EventDetailFragment" >
+        <argument
+            android:name="selectedEvent"
+            app:argType="com.idevelopstudio.whatson.models.Event" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.idevelopstudio.whatson.editProfile.EditProfileFragment" >

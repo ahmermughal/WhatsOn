@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ListItemTopEventBinding
 
-class TopEventsAdapter : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEventDiffCallback()){
+class TopEventsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEventDiffCallback()){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,6 +17,9 @@ class TopEventsAdapter : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEven
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
@@ -33,6 +36,9 @@ class TopEventsAdapter : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEven
             }
         }
     }
+    class OnClickListener(val clickListener: (topEvent:Event) -> Unit){
+        fun onClick (topEvent: Event) = clickListener(topEvent)
+    }
 }
 
 class TopEventDiffCallback : DiffUtil.ItemCallback<Event>(){
@@ -42,4 +48,6 @@ class TopEventDiffCallback : DiffUtil.ItemCallback<Event>(){
     override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
         return oldItem.id == newItem.id
     }
+
+
 }

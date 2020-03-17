@@ -26,6 +26,7 @@ fun bindEventRecyclerView(recyclerView: RecyclerView, data: List<Event>?){
     }
 }
 
+
 @BindingAdapter("imageWithGlide")
 fun bindImageViewWithGlide(imageView: ImageView, imageUrl : String?){
     imageUrl?.let {
@@ -40,7 +41,7 @@ fun bindImageViewWithGlide(imageView: ImageView, imageUrl : String?){
 fun ImageView.setEventBackground(item: Event?){
     item?.let {
         Glide.with(this.context)
-            .load(it.image[0])
+            .load(it.images[0])
             .into(this)
     }
 }
