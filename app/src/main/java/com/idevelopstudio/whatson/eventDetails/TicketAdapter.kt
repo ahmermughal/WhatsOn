@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.databinding.ListItemTicketTypeBinding
 import com.idevelopstudio.whatson.models.TicketType
 
-class TicketAdapter: ListAdapter<TicketType, TicketAdapter.ViewHolder>(TicketDiffCallback()) {
+class TicketAdapter(private val onClickListener: OnClickListener): ListAdapter<TicketType, TicketAdapter.ViewHolder>(TicketDiffCallback()) {
 
     class ViewHolder private constructor(val binding: ListItemTicketTypeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TicketType) {
@@ -26,19 +26,23 @@ class TicketAdapter: ListAdapter<TicketType, TicketAdapter.ViewHolder>(TicketDif
     }
 
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketAdapter.ViewHolder {
-            return ViewHolder.from(parent)
-        }
-
-        override fun onBindViewHolder(holder: TicketAdapter.ViewHolder, position: Int) {
-
-            val item = getItem(position)
-            holder.bind(item)
-
-
-        }
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketAdapter.ViewHolder {
+        return ViewHolder.from(parent)
     }
+
+    override fun onBindViewHolder(holder: TicketAdapter.ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(item)
+        }
+        holder.bind(item)
+    }
+
+    class OnClickListener(val clickListener: (ticketType:TicketType) -> Unit){
+        fun onClick (ticketType: TicketType) = clickListener(ticketType)
+    }
+
+}
 
 class TicketDiffCallback : DiffUtil.ItemCallback<TicketType>(){
     override fun areItemsTheSame(oldItem: TicketType, newItem: TicketType): Boolean {

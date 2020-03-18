@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.databinding.ListItemDateBinding
-import com.idevelopstudio.whatson.home.TopEventsAdapter
-import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.models.EventDate
 
 class DateAdapter(private val onClickListener: OnClickListener) : ListAdapter<EventDate, DateAdapter.ViewHolder>(DateDiffCallback()) {
+
     class ViewHolder private constructor(val binding: ListItemDateBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: EventDate){
             binding.date = item
@@ -33,6 +32,9 @@ class DateAdapter(private val onClickListener: OnClickListener) : ListAdapter<Ev
 
     override fun onBindViewHolder(holder: DateAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
