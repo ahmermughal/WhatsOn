@@ -14,17 +14,17 @@ data class Event(
     val address: String,
 //    val lat: Long,
 //    val long: Long,
-    val type: String,
+    //val interest: String,
     val generalInfo: String,
     val ticketDetails: String,
-    val organizerName: String,
+    //val organizerName: String,
     val days: List<EventDate>
     ) : Parcelable
 
 @Parcelize
 data class EventDate(
     @Json(name = "_id") val id: String,
-    val day: String,
+    val day: Long,
     @Json(name = "typesOfTicket") val ticketTypes: List<TicketType>
 ) : Parcelable
 

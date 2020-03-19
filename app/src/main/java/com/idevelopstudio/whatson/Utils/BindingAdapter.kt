@@ -9,6 +9,10 @@ import com.bumptech.glide.Glide
 import com.idevelopstudio.whatson.home.EventAdapter
 import com.idevelopstudio.whatson.home.TopEventsAdapter
 import com.idevelopstudio.whatson.models.Event
+import com.idevelopstudio.whatson.network.ApiService
+import timber.log.Timber
+
+private const val BASE_URL="http://192.168.10.5:3000/"
 
 @BindingAdapter("topEventListData")
 fun bindTopEventRecyclerView(recyclerView: RecyclerView, data: List<Event>?){
@@ -27,11 +31,15 @@ fun bindEventRecyclerView(recyclerView: RecyclerView, data: List<Event>?){
 }
 
 
+
 @BindingAdapter("imageWithGlide")
 fun bindImageViewWithGlide(imageView: ImageView, imageUrl : String?){
     imageUrl?.let {
+
+        val fixedImageUrl = BASE_URL+imageUrl
+
         Glide.with(imageView)
-            .load(imageUrl)
+            .load(fixedImageUrl)
             .into(imageView)
     }
 }
@@ -40,8 +48,10 @@ fun bindImageViewWithGlide(imageView: ImageView, imageUrl : String?){
 @BindingAdapter("eventImage")
 fun ImageView.setEventBackground(item: Event?){
     item?.let {
+        val imageUrl = BASE_URL+it.images[0]
+        Timber.d("ImageUrl: ${it.images[0]}")
         Glide.with(this.context)
-            .load(it.images[0])
+            .load(imageUrl)
             .into(this)
     }
 }

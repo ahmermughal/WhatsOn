@@ -29,6 +29,7 @@ class EventDetailFragment : Fragment() {
         val ticketAdapter = TicketAdapter(TicketAdapter.OnClickListener{ticketType ->
             Toast.makeText(context, "Name: ${ticketType.ticket}, Price: ${ticketType.price}", Toast.LENGTH_SHORT).show()
         })
+
         binding.selectTicketRecyclerView.adapter = ticketAdapter
 
         binding.selectDateRecyclerView.adapter = DateAdapter(DateAdapter.OnClickListener{
