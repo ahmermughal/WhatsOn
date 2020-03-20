@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.idevelopstudio.whatson.databinding.FragmentProfileBinding
+import com.idevelopstudio.whatson.models.InterestsList
 
 /**
  * A simple [Fragment] subclass.
@@ -67,6 +68,12 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        binding.addInterestsButton.setOnClickListener {
+            viewModel.user.value?.let {
+                val interestList = InterestsList(it.userInterests)
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSelectInterestsFragment(interestList))
+            }
+        }
 
         binding.user = FirebaseAuth.getInstance().currentUser!!
 

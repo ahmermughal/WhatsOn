@@ -11,7 +11,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="130dp"
         android:layout_margin="8dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="10dp">
@@ -58,39 +58,42 @@
                 app:layout_constraintStart_toEndOf="@id/image_card_view"
                 android:layout_marginStart="16dp"
                 style="@style/DarkSecondaryTextViewStyle"
+                android:textSize="14sp"
                 app:layout_constraintVertical_bias="0.15"
                 app:layout_constraintTop_toBottomOf="@id/title_text_view"
                 app:layout_constraintBottom_toBottomOf="@id/image_card_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="21/07/2020 - 09:00" />
+                tools:text="21/07/2020 - 09:00" />
 
             <TextView
                 android:id="@+id/location_text_view"
                 app:layout_constraintStart_toEndOf="@id/image_card_view"
                 android:layout_marginStart="16dp"
                 app:layout_constraintVertical_bias="1"
-                android:textSize="16dp"
+                android:textSize="14sp"
                 style="@style/DarkSecondaryTextViewStyle"
                 app:layout_constraintTop_toBottomOf="@id/time_text_view"
                 app:layout_constraintBottom_toBottomOf="@id/image_card_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Misty Mountain" />
+                tools:text="Misty Mountain" />
 
             <TextView
                 android:id="@+id/price_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="16dp"
                 app:layout_constraintVertical_bias="1"
-                android:textSize="18dp"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/location_text_view"
+                app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintTop_toBottomOf="@id/time_text_view"
                 app:layout_constraintBottom_toBottomOf="@id/image_card_view"
                 android:layout_width="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/pastelGreen"
                 android:layout_height="wrap_content"
-                android:text="$100" />
+                tools:text="$100" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

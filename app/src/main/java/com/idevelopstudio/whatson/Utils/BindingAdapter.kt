@@ -2,17 +2,15 @@ package com.idevelopstudio.whatson.Utils
 
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.idevelopstudio.whatson.home.EventAdapter
 import com.idevelopstudio.whatson.home.TopEventsAdapter
 import com.idevelopstudio.whatson.models.Event
-import com.idevelopstudio.whatson.network.ApiService
 import timber.log.Timber
 
-private const val BASE_URL="http://192.168.10.5:3000/"
+private const val BASE_URL="http://192.168.10.9:3000/"
 
 @BindingAdapter("topEventListData")
 fun bindTopEventRecyclerView(recyclerView: RecyclerView, data: List<Event>?){

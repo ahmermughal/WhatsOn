@@ -21,44 +21,11 @@ class BookingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentBookingsBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_bookings, container, false)
+        val binding = FragmentBookingsBinding.inflate(inflater)
 
-//        val adapter = TopEventsAdapter()
-//
-//        binding.bookingsRecyclerView.adapter = adapter
-//
-//        val list = ArrayList<Event>()
-//        list.add(
-//            Event(
-//                "1",
-//                "Event 1",
-//                R.drawable.hiking
-//            )
-//        )
-//        list.add(
-//            Event(
-//                "1",
-//                "Event 2",
-//                R.drawable.nigtclub
-//            )
-//        )
-//        list.add(
-//            Event(
-//                "1",
-//                "Event 3",
-//                R.drawable.hiking
-//            )
-//        )
-//        list.add(
-//            Event(
-//                "1",
-//                "Event 4",
-//                R.drawable.nigtclub
-//            )
-//        )
-//
-//        adapter.submitList(list)
+        val adapter = TopEventsAdapter(TopEventsAdapter.OnClickListener{
+
+        })
 
         return binding.root
     }

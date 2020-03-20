@@ -206,9 +206,9 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_margin="6dp"
-
+                            android:id="@+id/add_interests_button"
                             android:background="@drawable/circle_button"
-                            android:src="@drawable/ic_painting" />
+                            android:src="@drawable/ic_add" />
 
                     </LinearLayout>
 

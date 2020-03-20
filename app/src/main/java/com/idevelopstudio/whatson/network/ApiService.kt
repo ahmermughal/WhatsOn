@@ -13,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
 
-private const val BASE_URL="http://192.168.10.5:3000/"
+private const val BASE_URL="http://192.168.10.9:3000/"
 private const val TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFpdHNhbSIsImVtYWlsIjoiYWl0c2FtQGlkZXZlbG9wc3R1ZGlvLmNvbSJ9LCJpYXQiOjE1ODMwNjg4MTJ9.YIr_GadGJEy-RrEYo956oTvxp5RUZf-d8YC4aUX79qw"
 //private const val BASE_URL = "https://mars.udacity.com/"
 
@@ -38,37 +38,8 @@ private val retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .build()
 
-interface ApiService{
-    @GET("events")
-    suspend fun getEvents():
-            List<Event>
-
-    @FormUrlEncoded
-    @POST("users")
-    suspend fun createUser(
-        @Field("uid") uid: String,
-        @Field("name") name: String,
-        @Field("email") email: String
-    ) : DefaultReponse
-
-    @GET("users/{uid}")
-    suspend fun getUser(
-        @Path("uid")  uid: String
-    ): EventUser
-
-    @FormUrlEncoded
-    @PATCH("users/{uid}")
-    suspend fun updateUserData(
-        @Path("uid") uid: String,
-        @Field("name") name: String,
-        @Field("phone") phone: String,
-        @Field("age") age: Int,
-        @Field("gender") gender: String
-    ) : DefaultReponse
-}
-
 object Api{
-    val retrofitService: ApiService by lazy{
-        retrofit.create(ApiService::class.java)
+    val retrofitService: Apis by lazy{
+        retrofit.create(Apis::class.java)
     }
 }

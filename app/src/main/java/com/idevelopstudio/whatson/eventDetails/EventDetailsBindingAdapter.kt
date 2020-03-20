@@ -1,15 +1,12 @@
 package com.idevelopstudio.whatson.eventDetails
 
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.EventDate
 import com.idevelopstudio.whatson.models.TicketType
 import timber.log.Timber
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @BindingAdapter("dateListData")
@@ -36,4 +33,15 @@ fun bindDateToTextView(textView: TextView, data: Long?){
         val simpleDateFormat = SimpleDateFormat("EEE, d MMM", Locale.ENGLISH)
         textView.setText(simpleDateFormat.format(date).toString())
     }
+}
+
+@BindingAdapter("ticketName", "selectedTicket")
+fun bindTicketNameTextView(textView: TextView, ticketName: String?, selectedAmount: Int?){
+
+    ticketName?.let {ticketName->
+        selectedAmount?.let {selectedAmount->
+            textView.text = "$ticketName X $selectedAmount"
+        }
+    }
+
 }

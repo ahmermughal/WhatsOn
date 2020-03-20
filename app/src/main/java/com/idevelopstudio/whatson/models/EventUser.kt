@@ -10,5 +10,6 @@ data class EventUser(
     val gender : String?,
     val email : String,
     val uid: String,
-    val age: Int?
+    val age: Int?,
+    @Json(name = "userSelectedInterests") val userInterests: List<Interest>
     )

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.databinding.ViewPagerImageViewBinding
 
-class SliderImageViewAdapter(private val imageUrls: List<String>) : RecyclerView.Adapter<SliderImageViewAdapter.ViewHolder>() {
+class SliderImageViewAdapter(val imageUrls: List<String>) : RecyclerView.Adapter<SliderImageViewAdapter.ViewHolder>() {
 
     class ViewHolder private constructor(val binding: ViewPagerImageViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -18,6 +18,7 @@ class SliderImageViewAdapter(private val imageUrls: List<String>) : RecyclerView
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ViewPagerImageViewBinding.inflate(layoutInflater, parent, false)
+
                 return ViewHolder(binding)
             }
         }

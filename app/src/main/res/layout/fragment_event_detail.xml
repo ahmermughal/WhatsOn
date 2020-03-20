@@ -7,6 +7,9 @@
         <variable
             name="event"
             type="com.idevelopstudio.whatson.models.Event" />
+        <variable
+            name="viewModel"
+            type="com.idevelopstudio.whatson.eventDetails.EventDetailViewModel" />
     </data>
 
     <ScrollView
@@ -207,7 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="1"
+                        android:text="@{viewModel.selectedNumberOfTickets.toString()}"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -228,7 +231,7 @@
 
 
             <Button
-                android:text="Buy $10 Ticket"
+                android:text="Reserve Ticket"
                 android:textSize="22sp"
                 android:textColor="@android:color/white"
                 app:layout_constraintTop_toBottomOf="@id/layout_select_tickets"
@@ -238,10 +241,7 @@
                 android:background="@color/buttonColor"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"/>
-            <View
-                app:layout_constraintTop_toBottomOf="@id/buy_ticket_button"
-                android:layout_width="match_parent"
-                android:layout_height="16dp"/>
+
 
             
 

@@ -24,7 +24,7 @@
 
 
     <style name="DarkTextViewStyle" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/secondaryBackgroundColor</item>
+        <item name="android:textColor">@color/darkTextColor</item>
     </style>
 
     <style name="DarkSecondaryTextViewStyle" parent="Widget.MaterialComponents.TextView">

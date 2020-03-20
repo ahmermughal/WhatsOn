@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="130dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="match_parent">
+        
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/image_card_view"
+            android:layout_width="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:cardCornerRadius="8dp"
+            android:layout_height="100dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/title_text_view"
+            app:layout_constraintStart_toEndOf="@id/image_card_view"
+            app:layout_constraintTop_toTopOf="@id/image_card_view"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/image_card_view"
+            app:layout_constraintVertical_bias="0.15"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/darkTextColor"
+            android:layout_height="wrap_content"
+            tools:text="Hiking Trip"/>
+
+        <TextView
+            android:id="@+id/date_text_view"
+            app:layout_constraintStart_toEndOf="@id/image_card_view"
+            app:layout_constraintTop_toTopOf="@id/image_card_view"
+            app:layout_constraintBottom_toBottomOf="@id/image_card_view"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            tools:text="5 Sep, 2020"/>
+
+        <TextView
+            android:id="@+id/location_text_view"
+            app:layout_constraintStart_toEndOf="@id/image_card_view"
+            app:layout_constraintTop_toTopOf="@id/image_card_view"
+            app:layout_constraintBottom_toBottomOf="@id/image_card_view"
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            tools:text="Snow Mount"/>
+
+        <TextView
+            android:id="@+id/price_text_view"
+            app:layout_constraintStart_toEndOf="@id/image_card_view"
+            app:layout_constraintTop_toTopOf="@id/image_card_view"
+            app:layout_constraintBottom_toBottomOf="@id/image_card_view"
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            tools:text="Snow Mount"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
