@@ -49,4 +49,10 @@ interface Apis{
         @Path("uid") uid: String
     ) : List<UserBooking>
 
+    @FormUrlEncoded
+    @PATCH("users/{uid}/interests")
+    suspend fun updateUserInterests(
+        @Path("uid") uid: String,
+        @Field("interests") interests: List<String>
+    ) : DefaultReponse
 }

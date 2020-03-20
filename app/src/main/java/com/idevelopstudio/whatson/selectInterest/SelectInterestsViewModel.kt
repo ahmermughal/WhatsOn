@@ -3,6 +3,7 @@ package com.idevelopstudio.whatson.selectInterest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.idevelopstudio.whatson.models.Interest
 import com.idevelopstudio.whatson.network.Api
 import com.idevelopstudio.whatson.network.Apis
@@ -34,7 +35,7 @@ class SelectInterestsViewModel: ViewModel() {
         }
         coroutineScope.launch {
             try{
-
+                Api.retrofitService.updateUserInterests(FirebaseAuth.getInstance().uid!!, idList)
             }catch (t:Throwable){
                 Timber.d(t.message!!)
             }
