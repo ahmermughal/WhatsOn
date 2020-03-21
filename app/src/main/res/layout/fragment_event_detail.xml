@@ -230,6 +230,9 @@
             </LinearLayout>
 
 
+
+
+
             <Button
                 android:text="Reserve Ticket"
                 android:textSize="22sp"
@@ -238,7 +241,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/buy_ticket_button"
-                android:background="@color/buttonColor"
+                app:cornerRadius="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"/>
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.EventDate
 import com.idevelopstudio.whatson.models.TicketType
 import timber.log.Timber
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,5 +44,11 @@ fun bindTicketNameTextView(textView: TextView, ticketName: String?, selectedAmou
             textView.text = "$ticketName X $selectedAmount"
         }
     }
+}
 
+@BindingAdapter("setPrice")
+fun bindpriceToTextView(textView: TextView, price: Double){
+
+    val decFormat = DecimalFormat("##.00")
+    textView.text = "${decFormat.format(price)} AED"
 }

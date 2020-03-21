@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson.home
+package com.idevelopstudio.whatson.bookings
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ListItemTopEventBinding
+import com.idevelopstudio.whatson.models.UserBooking
 
-class TopEventsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Event, TopEventsAdapter.ViewHolder>(TopEventDiffCallback()){
+class BookingsAdapter(private val onClickListener: OnClickListener) : ListAdapter<UserBooking, BookingsAdapter.ViewHolder>(BookingsDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -23,8 +24,8 @@ class TopEventsAdapter(private val onClickListener: OnClickListener) : ListAdapt
     }
 
     class ViewHolder private constructor(val binding: ListItemTopEventBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Event){
-            binding.event = item
+        fun bind(item: UserBooking){
+            binding.event = item.event
             binding.executePendingBindings()
         }
         companion object {
@@ -35,16 +36,16 @@ class TopEventsAdapter(private val onClickListener: OnClickListener) : ListAdapt
             }
         }
     }
-    class OnClickListener(val clickListener: (topEvent:Event) -> Unit){
-        fun onClick (topEvent: Event) = clickListener(topEvent)
+    class OnClickListener(val clickListener: (userBooking:UserBooking) -> Unit){
+        fun onClick (userBooking: UserBooking) = clickListener(userBooking)
     }
 }
 
-class TopEventDiffCallback : DiffUtil.ItemCallback<Event>(){
-    override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
+class BookingsDiffCallback : DiffUtil.ItemCallback<UserBooking>(){
+    override fun areItemsTheSame(oldItem: UserBooking, newItem: UserBooking): Boolean {
         return oldItem === newItem
     }
-    override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
+    override fun areContentsTheSame(oldItem: UserBooking, newItem: UserBooking): Boolean {
         return oldItem.id == newItem.id
     }
 

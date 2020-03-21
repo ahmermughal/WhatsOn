@@ -55,12 +55,14 @@
                         app:layout_constraintStart_toEndOf="@id/image_card_view"
                         android:layout_marginStart="16dp"
                         app:layout_constraintVertical_bias="0.15"
-                        android:textSize="28dp"
+                        android:textSize="22dp"
                         android:textStyle="bold"
                         style="@style/DarkTextViewStyle"
                         app:layout_constraintTop_toTopOf="@id/image_card_view"
                         app:layout_constraintBottom_toBottomOf="@id/image_card_view"
-                        android:layout_width="wrap_content"
+                        android:layout_width="180dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         eventName="@{event}"
                         android:layout_height="wrap_content"
                         tools:text="Hiking Trip" />
@@ -86,12 +88,14 @@
                         app:layout_constraintStart_toEndOf="@id/image_card_view"
                         android:layout_marginStart="16dp"
                         app:layout_constraintVertical_bias="1"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="@{event.address}"
                         style="@style/DarkSecondaryTextViewStyle"
                         app:layout_constraintTop_toBottomOf="@id/ticket_name_text_view"
                         app:layout_constraintBottom_toBottomOf="@id/image_card_view"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:layout_height="wrap_content"
                         tools:text="Misty Mountain" />
 
@@ -107,23 +111,23 @@
                         app:layout_constraintBottom_toBottomOf="@id/image_card_view"
                         android:layout_width="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.totalPrice.toString()}"
+                        app:setPrice="@{viewModel.totalPrice}"
                         android:textColor="@color/pastelGreen"
                         android:layout_height="wrap_content"
                         tools:text="$100" />
 
                     <TextView
                         android:id="@+id/payment_message"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         android:textAlignment="center"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:textColor="@color/darkTextColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Please Pay at the venue"/>
+                        android:text="Please pay at the venue."/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 

@@ -19,7 +19,6 @@ import java.text.DecimalFormat
  */
 class EventDetailFragment : Fragment() {
 
-
     private lateinit var viewModelFactory: EventDetailViewModelFactory
     private lateinit var args: EventDetailFragmentArgs
     private lateinit var currentEventDate : EventDate
@@ -35,8 +34,8 @@ class EventDetailFragment : Fragment() {
     ): View? {
         binding = FragmentEventDetailBinding.inflate(layoutInflater)
         args = EventDetailFragmentArgs.fromBundle(arguments!!)
-        currentEventDate = args.selectedEvent.days[0]
-        val currentTicket = args.selectedEvent.days[0].ticketTypes[0]
+        currentEventDate = args.selectedEvent.days!![0]
+        val currentTicket = args.selectedEvent.days!![0].ticketTypes[0]
         binding.lifecycleOwner = this
         binding.event = args.selectedEvent
         binding.viewPager.adapter = SliderImageViewAdapter(args.selectedEvent.images)
@@ -60,7 +59,7 @@ class EventDetailFragment : Fragment() {
 
     private fun setTicketPriceToButton(price: Double){
         val decFormat = DecimalFormat("##.00")
-        binding.buyTicketButton.text = "$${decFormat.format(price)}-Reserve Now"
+        binding.buyTicketButton.text = "${decFormat.format(price)} AED-Reserve Now"
     }
 
     private fun showConfirmationDialog(){

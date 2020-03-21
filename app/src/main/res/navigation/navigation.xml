@@ -10,11 +10,19 @@
         android:name="com.idevelopstudio.whatson.home.HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_eventDetailFragment"
-            app:destination="@id/eventDetailFragment" />
+            app:destination="@id/eventDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/bookingsFragment"
-        android:name="com.idevelopstudio.whatson.bookings.BookingsFragment" />
+        android:name="com.idevelopstudio.whatson.bookings.BookingsFragment" >
+        <action
+            android:id="@+id/action_bookingsFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.idevelopstudio.whatson.profile.ProfileFragment" >
@@ -84,5 +92,13 @@
         <argument
             android:name="interestList"
             app:argType="com.idevelopstudio.whatson.models.InterestsList" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingDetailsFragment"
+        android:name="com.idevelopstudio.whatson.bookingDetails.BookingDetailsFragment"
+        android:label="BookingDetailsFragment" >
+        <argument
+            android:name="userBooking"
+            app:argType="com.idevelopstudio.whatson.models.UserBooking" />
     </fragment>
 </navigation>

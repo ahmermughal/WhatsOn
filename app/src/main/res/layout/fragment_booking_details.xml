@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="event"
+            type="com.idevelopstudio.whatson.models.Event" />
+        <variable
+            name="bookingDetails"
+            type="com.idevelopstudio.whatson.models.BookingDetails" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".eventDetails.BookingDetailsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textSize="26sp"
+                android:text="Booking Details"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/view_pager_card_view"-->
+<!--                android:layout_width="380dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/name_text_view">-->
+
+<!--                <androidx.viewpager2.widget.ViewPager2-->
+<!--                    android:id="@+id/view_pager"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent" />-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/details_card_view"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_text_view">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/image_card_view"
+                        android:layout_width="130dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:cardCornerRadius="8dp"
+                        android:layout_height="130dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:scaleType="fitXY"
+                            app:imageWithGlide="@{event.images[0]}"
+                            android:layout_height="match_parent"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        app:layout_constraintLeft_toRightOf="@id/image_card_view"
+                        app:layout_constraintTop_toTopOf="@id/image_card_view"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/image_card_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Name:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/name_text_view_"
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            tools:text="Mountain Hiking Trip"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            app:eventName="@{event}"
+                            android:textSize="18sp"
+                            android:textColor="@color/darkTextColor"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_address"
+                        app:layout_constraintTop_toBottomOf="@id/image_card_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Venue:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/address_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Misty Mountain, California"
+                            android:text="@{event.address}"
+                            android:textSize="18sp"
+                            android:textColor="@color/darkTextColor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_date"
+                        app:layout_constraintTop_toBottomOf="@id/layout_address"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/date_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:setDate="@{bookingDetails.day}"
+                            tools:text="Thu, 19 March"
+                            android:textSize="18sp"
+                            android:textColor="@color/darkTextColor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_ticket"
+                        app:layout_constraintTop_toBottomOf="@id/layout_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ticket:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/ticket_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="07:00 pm - Adult x 2"
+                            app:setNameWithCount="@{bookingDetails}"
+                            android:textSize="18sp"
+                            android:textColor="@color/darkTextColor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_price"
+                        app:layout_constraintTop_toBottomOf="@id/layout_ticket"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/price_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="$29.60"
+                            app:setPriceWithBookingDetails="@{bookingDetails}"
+                            android:textSize="18sp"
+                            android:textColor="@color/pastelGreen"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_note"
+                        app:layout_constraintTop_toBottomOf="@id/layout_price"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Note:"
+                            android:textSize="14sp"
+                            android:textColor="@color/secondaryTextColor"/>
+                        <TextView
+                            android:id="@+id/note_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Please pay at the venue."
+                            android:textSize="18sp"
+                            android:textColor="@color/darkTextColor"/>
+                    </LinearLayout>
+
+
+                    <!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:text="Ticket Details:"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/ticket_details_text_view"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:layout_marginBottom="8dp"-->
+<!--                        app:ticketDetailToTextView="@{bookingDetails}"-->
+<!--                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:text="Address:"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/address_text_view"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:layout_marginBottom="8dp"-->
+<!--                        android:text="@{event.address}"-->
+<!--                        tools:text="13 Elm Street" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:text="Description:"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/general_details_text_view"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:layout_marginBottom="8dp"-->
+<!--                        android:text="@{event.description}"-->
+<!--                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />-->
+<!--                </LinearLayout>-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <Button
+                android:id="@+id/buy_ticket_button"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Cancel Reservation"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/details_card_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
