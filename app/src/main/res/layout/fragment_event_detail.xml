@@ -235,7 +235,7 @@
 
             <Button
                 android:text="Reserve Ticket"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@android:color/white"
                 app:layout_constraintTop_toBottomOf="@id/layout_select_tickets"
                 app:layout_constraintStart_toStartOf="parent"

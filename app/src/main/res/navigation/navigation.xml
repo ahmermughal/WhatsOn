@@ -95,10 +95,14 @@
     </fragment>
     <fragment
         android:id="@+id/bookingDetailsFragment"
-        android:name="com.idevelopstudio.whatson.bookingDetails.BookingDetailsFragment"
-        android:label="BookingDetailsFragment" >
+        android:name="com.idevelopstudio.whatson.bookingDetails.BookingDetailsFragment">
         <argument
             android:name="userBooking"
             app:argType="com.idevelopstudio.whatson.models.UserBooking" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_bookingsFragment"
+            app:destination="@id/bookingsFragment"
+            app:popUpTo="@id/bookingsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

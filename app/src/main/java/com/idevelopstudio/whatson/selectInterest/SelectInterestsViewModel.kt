@@ -33,6 +33,10 @@ class SelectInterestsViewModel: ViewModel() {
                 idList.add(item.id)
             }
         }
+        if(idList.size == 1){
+            idList.add("111111")
+            Timber.d("Only One Interest")
+        }
         coroutineScope.launch {
             try{
                 Api.retrofitService.updateUserInterests(FirebaseAuth.getInstance().uid!!, idList)

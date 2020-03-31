@@ -55,4 +55,21 @@ interface Apis{
         @Path("uid") uid: String,
         @Field("interests") interests: List<String>
     ) : DefaultReponse
+
+    @DELETE("bookings/{uid}/details/{id}")
+    suspend fun deleteBookingByUid(
+        @Path("uid") uid: String,
+        @Path("id") id: String
+    ): DefaultReponse
+
+    @GET("users/{uid}/interests/list")
+    suspend fun getAllUserInterestsWithEventsByUid(
+        @Path("uid") uid:String
+    ): List<InterestsWithEvents>
+
+    @GET("events/search/{title}")
+    suspend fun searchEventsByTitle(
+        @Path("title") title:String
+    ): List<Event>?
+
 }

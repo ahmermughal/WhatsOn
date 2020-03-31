@@ -1,4 +1,4 @@
-package com.idevelopstudio.whatson.editProfile
+package com.idevelopstudio.whatson.bookingDetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class EditProfileViewModel: ViewModel() {
+class BookingDetailsViewModel : ViewModel(){
 
     private val _response = MutableLiveData<DefaultReponse>()
     val response : LiveData<DefaultReponse>
@@ -19,23 +19,15 @@ class EditProfileViewModel: ViewModel() {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    private val _error = MutableLiveData<String>()
-    val error : LiveData<String>
-    get() = _error
 
-    fun updateUser(uid: String, name: String, gender: String, phone: String, age: Int){
+    fun deleteBooking(uid: String, id: String){
         coroutineScope.launch {
-            try{
-                _response.value = Api.retrofitService.updateUserData(uid, name, phone, age, gender)
-            }catch (t: Throwable){
-                Timber.d("ERROR Update User: ${t.message}")
-                _error.value = t.message
+            try {
+                _response.value = Api.retrofitService.deleteBookingByUid(uid, id)
+            }catch (t:Throwable){
+                Timber.d(t.message!!)
             }
         }
-    }
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
 }

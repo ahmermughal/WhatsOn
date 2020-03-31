@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="interestsWithEvent"
+            type="com.idevelopstudio.whatson.models.InterestsWithEvents" />
+        <variable
+            name="navController"
+            type="androidx.navigation.NavController" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/new_events_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_events_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="18sp"
+            android:text="@{interestsWithEvent.interestTitle}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            app:setInterestEventList="@{interestsWithEvent}"
+            setInterestEventsCardNavController="@{navController}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/new_events_recycler_view" />
+
+        <TextView
+            android:id="@+id/empty_state_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:textSize="14sp"
+            android:text="There are currently no events in this interest." />
+    </LinearLayout>
+</layout>

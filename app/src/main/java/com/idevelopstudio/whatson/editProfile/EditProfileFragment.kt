@@ -35,7 +35,7 @@ class EditProfileFragment : Fragment() {
         binding.nameEditText.setText(args.userName)
         binding.emailEditText.setText(args.email)
         binding.ageEditText.setText(args.age.toString())
-        binding.phoneEditText.setText(args.phone ?: "100")
+        binding.phoneEditText.setText(args.phone)
 
         val adapter = ArrayAdapter<String>(context!!, android.R.layout.simple_spinner_item, genders)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -56,6 +56,11 @@ class EditProfileFragment : Fragment() {
             findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment())
         })
 
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            hideLoading()
+            Toast.makeText(context, "Error, check internet and try again!", Toast.LENGTH_SHORT).show()
+        })
+
         return binding.root
     }
 
@@ -73,7 +78,6 @@ class EditProfileFragment : Fragment() {
         binding.progressCircular.visibility = View.VISIBLE
         binding.updateProfileButton.visibility = View.INVISIBLE
     }
-
 
     private fun hideLoading(){
         binding.progressCircular.visibility = View.INVISIBLE

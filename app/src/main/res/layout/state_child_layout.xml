@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+           name="state"
+            type="com.idevelopstudio.whatson.utils.State"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/state_image_view"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            app:setImageViewState="@{state}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/state_image_view"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:setTextViewState="@{state}"
+            tools:text="Enter event name to search." />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_centerInParent="true"
+            app:setProgressBarState="@{state}"
+            android:layout_width="100dp"
+            android:visibility="invisible"
+            android:layout_height="100dp" />
+
+
+    </RelativeLayout>
+</layout>

@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toEndOf="@id/image_card_view"
                 android:layout_marginStart="16dp"
                 app:layout_constraintVertical_bias="0.15"
-                android:textSize="28dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 style="@style/DarkTextViewStyle"
                 app:layout_constraintTop_toTopOf="@id/image_card_view"

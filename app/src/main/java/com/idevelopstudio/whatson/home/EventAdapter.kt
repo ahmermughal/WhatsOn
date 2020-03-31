@@ -8,14 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ListItemSmallEventBinding
 
-class EventAdapter : ListAdapter<Event, EventAdapter.ViewHolder>(EventDiffCallback()){
+class EventAdapter(private val onClickListener: OnClickListener) : ListAdapter<Event, EventAdapter.ViewHolder>(EventDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: EventAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
@@ -33,6 +36,11 @@ class EventAdapter : ListAdapter<Event, EventAdapter.ViewHolder>(EventDiffCallba
             }
         }
     }
+
+    class OnClickListener(val clickListener: (topEvent:Event) -> Unit){
+        fun onClick (topEvent: Event) = clickListener(topEvent)
+    }
+
 }
 
 class EventDiffCallback : DiffUtil.ItemCallback<Event>(){

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="events"
+            type="com.idevelopstudio.whatson.models.EventList" />
+        <variable
+            name="navController"
+            type="androidx.navigation.NavController" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/top_events_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/top_events_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Top Events"
+            android:textSize="18sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/top_events_recycler_view"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            app:setBigCardEventList="@{events}"
+            setBigCardNavController="@{navController}"
+            android:layout_height="200dp"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+</layout>

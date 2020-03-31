@@ -12,8 +12,8 @@ data class Event(
     val currentBookings: Int?,
     val description: String,
     val address: String,
-    val lat: Double,
-    val long: Double,
+    val lat: Double?,
+    val long: Double?,
     val interest: String?,
     val generalInfo: String,
     val ticketDetails: String,
@@ -36,3 +36,7 @@ data class TicketType(
     val ticketsLeft: Int,
     val price: Double
 ) : Parcelable
+
+data class EventList(
+    val eventList: List<Event>
+)

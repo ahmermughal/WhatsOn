@@ -20,6 +20,9 @@ import com.idevelopstudio.whatson.home.TopEventsAdapter
  */
 class BookingsFragment : Fragment() {
 
+    private val viewModel: BookingsViewModel by lazy {
+        BookingsViewModelFactory(FirebaseAuth.getInstance().uid!!).create(BookingsViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +30,6 @@ class BookingsFragment : Fragment() {
     ): View? {
         val binding = FragmentBookingsBinding.inflate(inflater)
 
-        val viewModelFactory = BookingsViewModelFactory(FirebaseAuth.getInstance().uid!!)
-
-        val viewModel = viewModelFactory.create(BookingsViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -41,5 +41,8 @@ class BookingsFragment : Fragment() {
         return binding.root
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllBookingsOf(FirebaseAuth.getInstance().uid!!)
+    }
 }

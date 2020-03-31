@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.idevelopstudio.whatson.databinding.ListItemBigCardEventBinding
 import com.idevelopstudio.whatson.models.Event
-import com.idevelopstudio.whatson.databinding.ListItemTopEventBinding
 import com.idevelopstudio.whatson.models.UserBooking
 
 class BookingsAdapter(private val onClickListener: OnClickListener) : ListAdapter<UserBooking, BookingsAdapter.ViewHolder>(BookingsDiffCallback()){
@@ -23,7 +23,7 @@ class BookingsAdapter(private val onClickListener: OnClickListener) : ListAdapte
         holder.bind(item)
     }
 
-    class ViewHolder private constructor(val binding: ListItemTopEventBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: ListItemBigCardEventBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: UserBooking){
             binding.event = item.event
             binding.executePendingBindings()
@@ -31,7 +31,7 @@ class BookingsAdapter(private val onClickListener: OnClickListener) : ListAdapte
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemTopEventBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemBigCardEventBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

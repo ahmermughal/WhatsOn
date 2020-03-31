@@ -25,17 +25,30 @@
             android:layout_marginStart="16dp"
             android:text="@string/bookings" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookings_recycler_view"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:bookingList="@{viewModel.bookings}"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_weight="1">
+
+            <include
+                layout="@layout/state_child_layout"
+                app:state="@{viewModel.state}"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookings_recycler_view"
+                app:setRecyclerViewState="@{viewModel.state}"
+                app:bookingList="@{viewModel.bookings}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        </RelativeLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

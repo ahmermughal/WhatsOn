@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,17 +19,25 @@ import com.idevelopstudio.whatson.databinding.BottomSheetLayoutBinding
 import com.idevelopstudio.whatson.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var  appBarConfiguration: AppBarConfiguration
     private lateinit var  navController: NavController
+    private lateinit var bottomSheetDialog: BottomSheetDialog
+    private lateinit var  bottomSheetDialogBinding: BottomSheetLayoutBinding
+
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupBottomNav()
+        setupSearchBottomSheet()
     }
-
     private fun setupBottomNav() {
         binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this,
@@ -73,7 +83,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.appbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -86,16 +95,35 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showSearchBottomSheet(){
-        val bottomSheetDialog = BottomSheetDialog(this,
+    private fun setupSearchBottomSheet(){
+        bottomSheetDialog = BottomSheetDialog(this,
             R.style.BottomSheetDialogTheme
         )
-        //val bottomSheetView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, bottomSheetContainer)
+        bottomSheetDialogBinding =  BottomSheetLayoutBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bottomSheetDialogBinding.root)
+        bottomSheetDialogBinding.viewModel = viewModel
+        bottomSheetDialogBinding.lifecycleOwner = this
+        bottomSheetDialogBinding.dismissButton.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            bottomSheetDialogBinding.searchEditText.text = null
+            viewModel.isNotSearching()
+        }
+        val adapter = SearchAdapter()
+        bottomSheetDialogBinding.searchRecyclerView.adapter = adapter
+        bottomSheetDialogBinding.searchEditText.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_GO -> {
+                    viewModel.searchEventsByTitle(v.text.toString())
+                    true
+                }
+                else -> false
+            }
+        }
 
-        val binding: BottomSheetLayoutBinding = DataBindingUtil.inflate(layoutInflater,
-            R.layout.bottom_sheet_layout, bottomSheetContainer, false)
+    }
 
-        bottomSheetDialog.setContentView(binding.root)
+    private fun showSearchBottomSheet(){
+
 
 //
 //        val adapter = SearchAdapter()
