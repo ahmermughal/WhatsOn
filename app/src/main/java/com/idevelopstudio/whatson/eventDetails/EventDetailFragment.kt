@@ -6,12 +6,15 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.DialogTicketConfirmBinding
 import com.idevelopstudio.whatson.databinding.FragmentEventDetailBinding
 import com.idevelopstudio.whatson.models.EventDate
-import com.idevelopstudio.whatson.models.TicketType
 import java.text.DecimalFormat
 
 /**
@@ -22,6 +25,7 @@ class EventDetailFragment : Fragment() {
     private lateinit var viewModelFactory: EventDetailViewModelFactory
     private lateinit var args: EventDetailFragmentArgs
     private lateinit var currentEventDate : EventDate
+    private lateinit var mapView: MapView
     private val eventViewModel: EventDetailViewModel by lazy {
         viewModelFactory.create(EventDetailViewModel::class.java)
     }
@@ -53,10 +57,69 @@ class EventDetailFragment : Fragment() {
         })
 
         setupListenersAndObservers()
-
+        setupMapView(savedInstanceState)
         return binding.root
     }
 
+    private fun setupMapView(savedInstanceState: Bundle?){
+        //val mapFragment = activity!!.supportFragmentManager.findFragmentById(R.id.map_view) as SupportMapFragment
+        mapView = binding.mapView
+        var mapViewBundle: Bundle? = null
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(context!!.getString(R.string.MAPVIEW_BUNDLE_KEY))
+        }
+        mapView.onCreate(mapViewBundle)
+        mapView.getMapAsync {map->
+            args.selectedEvent.lat?.let {lat->
+                args.selectedEvent.long?.let {long->
+                    val latlang: LatLng = LatLng(lat, long)
+                    map.addMarker(MarkerOptions().position(latlang).title(args.selectedEvent.title))
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latlang,16f))
+                }
+            }
+            }
+        }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        var mapViewBundle = outState.getBundle(context!!.getString(R.string.MAPVIEW_BUNDLE_KEY))
+        if (mapViewBundle == null) {
+            mapViewBundle = Bundle()
+            outState.putBundle(context!!.getString(R.string.MAPVIEW_BUNDLE_KEY), mapViewBundle)
+        }
+        mapView.onSaveInstanceState(mapViewBundle)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart();
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
     private fun setTicketPriceToButton(price: Double){
         val decFormat = DecimalFormat("##.00")
         binding.buyTicketButton.text = "${decFormat.format(price)} AED-Reserve Now"
