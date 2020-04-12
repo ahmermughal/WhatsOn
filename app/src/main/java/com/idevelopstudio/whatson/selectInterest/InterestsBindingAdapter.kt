@@ -1,10 +1,12 @@
 package com.idevelopstudio.whatson.selectInterest
 
+import android.graphics.PorterDuff
 import android.widget.ImageButton
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.models.Interest
+import com.idevelopstudio.whatson.utils.getImageByTitle
 
 @BindingAdapter("setInterestsList")
 fun bindInterestsListToRecyclerView(recyclerView: RecyclerView, list: List<Interest>?){
@@ -17,6 +19,7 @@ fun bindInterestsListToRecyclerView(recyclerView: RecyclerView, list: List<Inter
 @BindingAdapter("setInterestButton")
 fun bindInterestToButton(imageButton: ImageButton, interest: Interest?){
     interest?.let {
+        imageButton.setImageResource(getImageByTitle(interest.title))
         if(!interest.selected){
             imageButton.setBackgroundResource(R.drawable.circle_dark_button)
         }else{

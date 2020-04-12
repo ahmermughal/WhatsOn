@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
                     hideBottomNav()
                     supportActionBar!!.hide()
                 }
+                R.id.onBoardingFragment ->{
+                    hideBottomNav()
+                    supportActionBar!!.hide()
+                }
                 else -> {
                     showBottomNav()
                     supportActionBar!!.show()

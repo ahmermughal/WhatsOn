@@ -1,15 +1,16 @@
 package com.idevelopstudio.whatson.login
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -29,7 +30,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.FragmentLoginBinding
-import com.idevelopstudio.whatson.home.HomeViewModel
 import timber.log.Timber
 
 /**
@@ -42,6 +42,7 @@ class LoginFragment : Fragment() {
     private lateinit var callbackManager: CallbackManager
 
     private lateinit var binding : FragmentLoginBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel: LoginViewModel by lazy {
         ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -70,6 +71,8 @@ class LoginFragment : Fragment() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
+
+        sharedPreferences = activity!!.getSharedPreferences(getString(R.string.SHARED_PREF_KEY), Context.MODE_PRIVATE)
 
         googleSignInClient = GoogleSignIn.getClient(context!!, gso)
         callbackManager = CallbackManager.Factory.create()
@@ -184,7 +187,13 @@ class LoginFragment : Fragment() {
 
 
     private fun goToHomeFragment(){
-        findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+        val isNewUser = sharedPreferences.getInt(getString(R.string.SHARED_PREF_NEW_USER), 1)
+        if (isNewUser == 0 ){
+            findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+        }else{
+            findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToOnBoardingFragment())
+        }
+
     }
 
     private fun showLoading(){

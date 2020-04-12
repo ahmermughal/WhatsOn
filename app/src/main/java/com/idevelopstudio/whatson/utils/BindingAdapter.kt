@@ -17,7 +17,7 @@ import com.idevelopstudio.whatson.models.EventList
 import com.idevelopstudio.whatson.models.InterestsWithEvents
 import timber.log.Timber
 
-private const val BASE_URL="http://192.168.10.6:3000/"
+private const val BASE_URL="http://192.168.10.9:3000/"
 
 @BindingAdapter("topEventListData")
 fun bindTopEventRecyclerView(recyclerView: RecyclerView, data: List<Event>?){

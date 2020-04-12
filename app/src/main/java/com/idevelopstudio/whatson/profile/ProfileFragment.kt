@@ -22,7 +22,6 @@ class ProfileFragment : Fragment() {
         ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,5 +79,8 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        viewModel.getUserData()
+    }
 }

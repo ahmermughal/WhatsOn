@@ -133,6 +133,7 @@ class EventDetailFragment : Fragment() {
         dialog.setContentView(bindingDialog.root)
         bindingDialog.viewModel = eventViewModel
         bindingDialog.event = args.selectedEvent
+        bindingDialog.selectedEventDate = currentEventDate
         dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent);
         val lp = WindowManager.LayoutParams()
         lp.copyFrom(dialog.window!!.attributes!!);

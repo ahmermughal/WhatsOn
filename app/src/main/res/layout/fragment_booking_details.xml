@@ -10,6 +10,9 @@
         <variable
             name="bookingDetails"
             type="com.idevelopstudio.whatson.models.BookingDetails" />
+        <variable
+            name="currentEvent"
+            type="com.idevelopstudio.whatson.models.EventDate" />
     </data>
 
     <ScrollView

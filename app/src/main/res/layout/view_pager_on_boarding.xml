@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/on_boarding_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:textSize="30sp"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="24dp"
+            android:layout_height="wrap_content"
+            tools:text="Hello"/>
+
+        <ImageView
+            android:padding="16dp"
+            android:id="@+id/on_boarding_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/on_boarding_title"
+            app:layout_constraintBottom_toTopOf="@id/on_boarding_body_layout"
+            android:layout_width="350dp"
+            android:layout_height="350dp"/>
+
+        <FrameLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/card_bg_accent_dark"
+            android:id="@+id/on_boarding_body_layout"
+            android:layout_marginBottom="36dp"
+            android:padding="16dp"
+            android:layout_width="360dp"
+            android:layout_height="150dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:id="@+id/on_boarding_body"
+                android:layout_margin="8dp"
+                android:textAlignment="textStart"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="@string/sampleString"/>
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
