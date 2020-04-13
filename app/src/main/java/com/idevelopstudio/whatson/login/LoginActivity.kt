@@ -1,17 +1,15 @@
 package com.idevelopstudio.whatson.login
 
-
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -29,19 +27,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.idevelopstudio.whatson.R
-import com.idevelopstudio.whatson.databinding.FragmentLoginBinding
+import com.idevelopstudio.whatson.databinding.ActivityLoginBinding
+import com.idevelopstudio.whatson.main.MainActivity
+import com.idevelopstudio.whatson.onBoarding.OnBoardingActivity
 import timber.log.Timber
 
-/**
- * A simple [Fragment] subclass.
- */
-class LoginFragment : Fragment() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var callbackManager: CallbackManager
 
-    private lateinit var binding : FragmentLoginBinding
+    private lateinit var binding : ActivityLoginBinding
     private lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel: LoginViewModel by lazy {
@@ -52,12 +49,12 @@ class LoginFragment : Fragment() {
         private const val RC_SIGN_IN = 9001
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        supportActionBar!!.hide()
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
         binding.googleLoginButton.setOnClickListener {
@@ -72,18 +69,16 @@ class LoginFragment : Fragment() {
             .requestEmail()
             .build()
 
-        sharedPreferences = activity!!.getSharedPreferences(getString(R.string.SHARED_PREF_KEY), Context.MODE_PRIVATE)
+        sharedPreferences = applicationContext.getSharedPreferences(getString(R.string.SHARED_PREF_KEY), Context.MODE_PRIVATE)
 
-        googleSignInClient = GoogleSignIn.getClient(context!!, gso)
+        googleSignInClient = GoogleSignIn.getClient(applicationContext, gso)
         callbackManager = CallbackManager.Factory.create()
 
-        viewModel.response.observe(viewLifecycleOwner, Observer {
+        viewModel.response.observe(this, Observer {
             Timber.d(it.message)
-            goToHomeFragment()
+            goToMainActivity()
             hideLoading()
         })
-
-        return binding.root
     }
 
     private fun signInWithFacebook(){
@@ -121,10 +116,23 @@ class LoginFragment : Fragment() {
         val currentUser: FirebaseUser? = auth.currentUser
         currentUser?.let{
             Timber.d("Current User: ${it.email}")
-            goToHomeFragment()
+            goToMainActivity()
         }
     }
 
+    private fun goToMainActivity(){
+        val isNewUser = sharedPreferences.getInt(getString(R.string.SHARED_PREF_NEW_USER), 1)
+        if (isNewUser == 0 ){
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }else{
+            val intent = Intent(applicationContext, OnBoardingActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -185,17 +193,6 @@ class LoginFragment : Fragment() {
             }
     }
 
-
-    private fun goToHomeFragment(){
-        val isNewUser = sharedPreferences.getInt(getString(R.string.SHARED_PREF_NEW_USER), 1)
-        if (isNewUser == 0 ){
-            findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-        }else{
-            findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToOnBoardingFragment())
-        }
-
-    }
-
     private fun showLoading(){
         binding.progressCircular.visibility = View.VISIBLE
         binding.buttonLayout.visibility = View.INVISIBLE
@@ -207,7 +204,4 @@ class LoginFragment : Fragment() {
         binding.buttonLayout.visibility = View.VISIBLE
     }
 
-
 }
-
-

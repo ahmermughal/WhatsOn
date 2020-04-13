@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.idevelopstudio.whatson.R
@@ -42,6 +43,11 @@ class SelectInterestsFragment : Fragment() {
             val list = adapter.returnList()
             viewModel.updateInterestList(list)
         }
+
+        viewModel.doneUpdating.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(SelectInterestsFragmentDirections.actionSelectInterestsFragmentToProfileFragment())
+        })
+
         return binding.root
     }
 

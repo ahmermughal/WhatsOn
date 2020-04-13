@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.idevelopstudio.whatson.databinding.FragmentHomeBinding
-import com.idevelopstudio.whatson.models.InterestsWithEvents
 
 /**
  * A simple [Fragment] subclass.
@@ -30,7 +28,6 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
-        binding.nameTextView.text = FirebaseAuth.getInstance().currentUser?.displayName
         binding.viewModel = viewModel
 
         viewModel.topEvents.observe(viewLifecycleOwner, Observer {

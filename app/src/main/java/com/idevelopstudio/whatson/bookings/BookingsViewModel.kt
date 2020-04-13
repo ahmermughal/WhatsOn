@@ -14,7 +14,7 @@ import timber.log.Timber
 
 
 
-class BookingsViewModel(uid: String) : ViewModel(){
+class BookingsViewModel() : ViewModel(){
 
     private val _bookings = MutableLiveData<List<UserBooking>>()
     val bookings : LiveData<List<UserBooking>>
@@ -24,11 +24,12 @@ class BookingsViewModel(uid: String) : ViewModel(){
     val state : LiveData<State>
     get() = _state
 
+
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob+ Dispatchers.Main)
 
     init {
-        getAllBookingsOf(uid)
+        //getAllBookingsOf(uid)
         listIsNotEmpty()
     }
 

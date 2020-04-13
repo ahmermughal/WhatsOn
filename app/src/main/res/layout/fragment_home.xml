@@ -15,25 +15,15 @@
         tools:context=".main.MainActivity">
 
         <TextView
-            android:id="@+id/welcome_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Welcome"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="26sp"
+            android:layout_marginStart="16dp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/welcome_text_view"
-            app:layout_constraintTop_toBottomOf="@id/welcome_text_view"
-            android:text="John Doe" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/home" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

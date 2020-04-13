@@ -19,6 +19,10 @@ class SelectInterestsViewModel: ViewModel() {
     val interestsList : LiveData<List<Interest>>
     get() = _interestsList
 
+    private val _doneUpdating = MutableLiveData<Boolean>()
+    val doneUpdating : LiveData<Boolean>
+    get() = _doneUpdating
+
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -40,10 +44,15 @@ class SelectInterestsViewModel: ViewModel() {
         coroutineScope.launch {
             try{
                 Api.retrofitService.updateUserInterests(FirebaseAuth.getInstance().uid!!, idList)
+                doneUpdatingUserInterests()
             }catch (t:Throwable){
                 Timber.d(t.message!!)
             }
         }
+    }
+
+    private suspend fun doneUpdatingUserInterests() {
+        _doneUpdating.value = true
     }
 
     private fun getInterestsList() {

@@ -1,14 +1,12 @@
 package com.idevelopstudio.whatson.utils
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import com.idevelopstudio.whatson.R
 
 fun getImageByTitle(name: String): Int {
     when (name) {
         "Group"-> return R.drawable.group
         "Music"-> return R.drawable.ic_music
-        "Party"-> return R.drawable.ic_close
+        "Party"-> return R.drawable.party
         "Art"-> return R.drawable.art
         "Drinks"-> return R.drawable.drink
         "Candlelight Concerts"-> return R.drawable.concert
@@ -17,19 +15,19 @@ fun getImageByTitle(name: String): Int {
         "Bars"-> return R.drawable.bars
         "Couple"-> return R.drawable.couple
         "Cinema"-> return R.drawable.cinema
-        "Afterwork"-> return R.drawable.ic_close
+        "Afterwork"-> return R.drawable.afterwok
         "Single"-> return R.drawable.single
-        "Outdoors"-> return R.drawable.ic_close
-        "Fashion"-> return R.drawable.ic_close
-        "Sport"-> return R.drawable.ic_close
-        "Family"-> return R.drawable.ic_close
-        "Comedy"-> return R.drawable.ic_close
-        "Wellness"-> return R.drawable.ic_close
-        "Popup"-> return R.drawable.ic_close
-        "Festival"-> return R.drawable.ic_close
-        "Brunch"-> return R.drawable.ic_close
-        "Charity"-> return R.drawable.ic_close
-        "LGBTQ+"-> return R.drawable.ic_close
+        "Outdoors"-> return R.drawable.outdoors
+        "Fashion"-> return R.drawable.fashion
+        "Sport"-> return R.drawable.sport
+        "Family"-> return R.drawable.family
+        "Comedy"-> return R.drawable.comedy
+        "Wellness"-> return R.drawable.wellness
+        "Popup"-> return R.drawable.popup
+        "Festival"-> return R.drawable.festival
+        "Brunch"-> return R.drawable.brunch
+        "Charity"-> return R.drawable.charity
+        "LGBTQ+"-> return R.drawable.lgbtq
         else -> return R.drawable.ic_close
     }
 }

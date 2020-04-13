@@ -1,31 +1,26 @@
 package com.idevelopstudio.whatson.onBoarding
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import androidx.databinding.DataBindingUtil
+import androidx.viewpager2.widget.ViewPager2
 import com.idevelopstudio.whatson.R
-import com.idevelopstudio.whatson.databinding.FragmentOnBoardingBinding
+import com.idevelopstudio.whatson.databinding.ActivityOnBoardingBinding
+import com.idevelopstudio.whatson.main.MainActivity
 import com.idevelopstudio.whatson.models.OnBoarding
 
-/**
- * A simple [Fragment] subclass.
- */
-class OnBoardingFragment : Fragment() {
+class OnBoardingActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityOnBoardingBinding
 
-    private lateinit var binding: FragmentOnBoardingBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-       binding = FragmentOnBoardingBinding.inflate(inflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_on_boarding)
+        supportActionBar!!.hide()
 
-        val sharedPreferences = activity!!.getSharedPreferences(
+        val sharedPreferences = applicationContext.getSharedPreferences(
             getString(R.string.SHARED_PREF_KEY),
             Context.MODE_PRIVATE
         )
@@ -35,20 +30,21 @@ class OnBoardingFragment : Fragment() {
         sharedPrefEditor.apply()
         initSetup()
         setupClickListeners()
-        return binding.root
     }
-
 
     private fun setupClickListeners(){
         binding.nextButton.setOnClickListener {
-            findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
-
     private fun initSetup(){
-        val onBoardingList = listOf<OnBoarding>(OnBoarding("HELLO", getString(R.string.sampleString), context!!.getDrawable(R.drawable.welcoming)!!),
-            OnBoarding("EVENT'S NEARBY", getString(R.string.sampleString), context!!.getDrawable(R.drawable.celebration)!!),
-            OnBoarding("LET'S GO!", getString(R.string.sampleString), context!!.getDrawable(R.drawable.partying)!!))
+        val onBoardingList = listOf<OnBoarding>(
+            OnBoarding("HELLO", getString(R.string.sampleString), applicationContext.getDrawable(R.drawable.welcoming)!!),
+            OnBoarding("EVENT'S NEARBY", getString(R.string.sampleString), applicationContext.getDrawable(R.drawable.celebration)!!),
+            OnBoarding("LET'S GO!", getString(R.string.sampleString), applicationContext.getDrawable(R.drawable.partying)!!)
+        )
 
         val adapter = OnBoardingAdapter(onBoardingList)
         binding.viewPager.adapter = adapter
@@ -57,7 +53,7 @@ class OnBoardingFragment : Fragment() {
         binding.dotTwo.setImageResource(R.drawable.shape_circle)
         binding.dotThree.setImageResource(R.drawable.shape_circle)
 
-        binding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback(){
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 when (position){
@@ -83,4 +79,5 @@ class OnBoardingFragment : Fragment() {
             }
         })
     }
+
 }
