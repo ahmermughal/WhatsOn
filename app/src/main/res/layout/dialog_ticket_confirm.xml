@@ -207,7 +207,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Button
-                android:text="Confirm Reservation"
+                android:text="Confirm"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 android:id="@+id/reserve_ticket_button"

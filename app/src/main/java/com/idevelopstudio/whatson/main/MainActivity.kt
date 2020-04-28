@@ -89,7 +89,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     private fun showSearchBottomSheet() {

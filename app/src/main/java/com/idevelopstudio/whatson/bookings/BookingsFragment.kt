@@ -21,7 +21,7 @@ import com.idevelopstudio.whatson.home.TopEventsAdapter
 class BookingsFragment : Fragment() {
 
     private val viewModel: BookingsViewModel by lazy {
-        BookingsViewModelFactory(FirebaseAuth.getInstance().uid!!).create(BookingsViewModel::class.java)
+        BookingsViewModelFactory().create(BookingsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -37,7 +37,6 @@ class BookingsFragment : Fragment() {
             findNavController().navigate(BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(it))
         })
         binding.bookingsRecyclerView.adapter = adapter
-
         return binding.root
     }
 
