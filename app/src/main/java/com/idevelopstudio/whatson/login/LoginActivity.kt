@@ -146,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Timber.w("Google Sign in Failed ${e.message}")
+                Timber.w("Google Sign in Failed ${e}")
                 // ...
             }
         }else{

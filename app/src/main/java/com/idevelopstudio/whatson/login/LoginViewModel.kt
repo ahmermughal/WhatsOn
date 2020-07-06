@@ -26,7 +26,7 @@ class LoginViewModel  : ViewModel(){
             try{
                 _response.value = Api.retrofitService.createUser(user.uid, user.displayName ?: "Event User", user.email!!)
             }catch (t: Throwable){
-                Timber.d("ERROR Create User: ${t.message}")
+                Timber.d("ERROR Create User: ${t}")
             }
         }
     }

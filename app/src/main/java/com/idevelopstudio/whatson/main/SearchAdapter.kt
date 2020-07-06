@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.idevelopstudio.whatson.models.Event
 import com.idevelopstudio.whatson.databinding.ListItemSearchCardBinding
 
-class SearchAdapter : ListAdapter<Event, SearchAdapter.ViewHolder>(EventDiffCallback()){
+class SearchAdapter (private val onClickListener: OnClickListener) : ListAdapter<Event, SearchAdapter.ViewHolder>(EventDiffCallback()){
 
     class ViewHolder private constructor(val binding: ListItemSearchCardBinding) : RecyclerView.ViewHolder(binding.root){
      fun bind(item: Event){
@@ -34,7 +34,15 @@ class SearchAdapter : ListAdapter<Event, SearchAdapter.ViewHolder>(EventDiffCall
     override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(getItem(position), position)
+        }
     }
+
+    class OnClickListener(val clickListener: (event: Event, index: Int) -> Unit) {
+        fun onClick(event: Event, index: Int) = clickListener(event, index)
+    }
+
 }
 
 class EventDiffCallback : DiffUtil.ItemCallback<Event>(){

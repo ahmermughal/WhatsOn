@@ -17,6 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.idevelopstudio.whatson.R
 import com.idevelopstudio.whatson.databinding.ActivityMainBinding
 import com.idevelopstudio.whatson.databinding.BottomSheetLayoutBinding
+import com.idevelopstudio.whatson.home.HomeFragmentDirections
+import com.idevelopstudio.whatson.models.Event
 
 class MainActivity : AppCompatActivity() {
 
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             bottomSheetDialogBinding.searchEditText.text = null
             viewModel.isNotSearching()
         }
-        val adapter = SearchAdapter()
+        val adapter = SearchAdapter(clickListener)
         bottomSheetDialogBinding.searchRecyclerView.adapter = adapter
         bottomSheetDialogBinding.searchEditText.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
@@ -89,6 +91,11 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private val clickListener = SearchAdapter.OnClickListener { event: Event, i: Int ->
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToEventDetailFragment(event))
+        bottomSheetDialog.dismiss()
     }
 
     private fun showSearchBottomSheet() {
